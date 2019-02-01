@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Assignment2_S19
 {
@@ -19,6 +20,7 @@ namespace Assignment2_S19
             int k = 50;
             int[] prices = { 1, 12, 5, 111, 200, 1000, 10 };
             Console.WriteLine(maximumToys(prices, k));
+
 
             // Balanced sums
             Console.WriteLine("\n\nBalanced sums");
@@ -62,10 +64,19 @@ namespace Assignment2_S19
             }
         }
 
-        // Complete the rotLeft function below.
+        // rotLeft takes an array and rotates it left by d spaces
         static int[] rotLeft(int[] a, int d)
         {
-            return new int[] {};
+            if (a == null)
+                return null;
+            int n = a.Length;
+            int [] r = new int[n];
+            d %= n;
+            for (int i = 0; i < n;i++)
+            {
+                r[(i - d + n) % n] = a[i];
+            }
+            return r;
         }
 
         // Complete the maximumToys function below.
