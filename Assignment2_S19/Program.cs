@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
+using System.Xml;
 
 namespace Assignment2_S19
 {
@@ -82,32 +85,112 @@ namespace Assignment2_S19
         // Complete the maximumToys function below.
         static int maximumToys(int[] prices, int k)
         {
-            return 0;
+            int len = prices.Length;
+            //Todo: Professor says to include an algorithm for sorting (bubble ArgumentOutOfRangeException Binary)
+            Array.Sort(prices);
+            int sum = 0;
+            int q = 0;
+
+            for (int i = 0; i < len; i++)
+            {
+                if (sum + prices[i] <= k)
+                {
+                    sum += prices[i];
+                    q++;
+                }
+                else
+                    break;
+            }
+            return q;
         }
 
         // Complete the balancedSums function below.
         static string balancedSums(List<int> arr)
         {
-            return "";
+            int sumLeft = 0;
+            int sumRight = 0;
+
+            for(int i=1; i<arr.Count; i++)
+            {
+                sumRight += arr[i];
+            }
+
+            for (int j = 0; j < arr.Count; j++)
+            {
+                if (sumRight == sumLeft)
+                {
+                    return "Yes";
+                }
+                else
+                {
+                    sumLeft += arr[j];
+                    sumRight -= arr[j + 1];
+                }
+
+                return "No";
+            }
         }
 
         // Complete the missingNumbers function below.
         static int[] missingNumbers(int[] arr, int[] brr)
         {
-            return new int[] { };
+            int j = 0;
+            Array.Sort(brr);
+            Array.Sort(arr);
+            int [] output = new int[brr.Length - arr.Length];
+
+            for(int i=0; i<arr.Length; i++)
+            {
+                if (arr[j] != brr[i])
+                {
+                    output[i - j] = brr[i];
+                }
+                else
+                {
+                    j++;
+                }
+            }
+            return output;
+
         }
 
 
         // Complete the gradingStudents function below.
         static int[] gradingStudents(int[] grades)
         {
-            return new int[] { };
+            int [] output = new int[grades.Length];
+            for (int i = 0; i < grades.Length; i++)
+            {
+                if (grades[i] % 5 > 2 && grades[i] >= 38)
+                {
+                    output[i] = ((grades[i] / 5) * 5) + 5;
+                }
+                else
+                {
+                    {
+                        output[i] = grades[i];
+                    }
+                }
+            }
+
+            return output;
         }
 
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            return 0;
+            Array.Sort(arr);
+            int len = arr.Length;
+            int med = len / 2;
+
+            if (len % 2 == 0)
+            {
+                return (arr[med-1]+arr[med])/2;
+            }
+            else
+            {
+                return arr[med];
+            }
         }
 
         // Complete the closestNumbers function below.
