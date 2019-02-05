@@ -115,7 +115,7 @@ namespace Assignment2_S19
                 sumRight += arr[i];
             }
 
-            for (int j = 0; j < arr.Count; j++)
+            for (int j = 0; j < (arr.Count - 1); j++)
             {
                 if (sumRight == sumLeft)
                 {
@@ -124,11 +124,11 @@ namespace Assignment2_S19
                 else
                 {
                     sumLeft += arr[j];
+                    //Warning: j+1 is going to go out of range by 1!?!
                     sumRight -= arr[j + 1];
                 }
-
-                return "No";
             }
+            return "No";
         }
 
         // Complete the missingNumbers function below.
