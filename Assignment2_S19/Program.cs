@@ -196,7 +196,37 @@ namespace Assignment2_S19
         // Complete the closestNumbers function below.
         static int[] closestNumbers(int[] arr)
         {
-            return new int[] { };
+            int count = 2*(arr.Length)-2;
+            Array.Sort(arr);
+            int min = arr[arr.Length] - arr[0];
+
+            for(int i=0; i<arr.Length-1;i++)
+            {
+                if ((arr[i + 1] - arr[i]) < min)
+                {
+                    min = arr[i + 1] - arr[i];
+                    count = 2;
+                }
+                else if((arr[i + 1] - arr[i]) == min)
+                {
+                    count += 2;
+                }
+            }
+
+            int[] newArray = new int[count];
+            int k = 0;
+
+            for (int j = 0; j < arr.Length - 1; j++)
+            {
+                if ((arr[j+1]-arr[j]) == min)
+                {
+                    newArray[k] = arr[j];
+                    newArray[k + 1] = arr[j + 1];
+                    k += 2;
+                }
+            }
+
+            return newArray;
         }
 
         // Complete the dayOfProgrammer function below.
