@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection.Metadata.Ecma335;
@@ -232,7 +233,23 @@ namespace Assignment2_S19
         // Complete the dayOfProgrammer function below.
         static string dayOfProgrammer(int year)
         {
-            return "";
+            int programmingDay = 256;
+            int normDays = 243;
+            int septDays = programmingDay - normDays;
+            bool isJulianLeap = year >= 1700 && year <= 1917 && year % 4 == 0;
+            bool isGregLeap = (year >1918 && year%400 ==0) || (year % 4 == 0 && year % 100 != 0);
+            bool isTransitionYear = year == 1918;
+
+            if (isJulianLeap || isGregLeap)
+            {
+                septDays -= 1;
+            }
+            else if (isTransitionYear)
+            {
+                septDays += 14;
+            }
+
+            return "09-" + septDays + "-" + year;
         }
     }
 }
