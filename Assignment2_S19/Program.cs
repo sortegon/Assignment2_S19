@@ -87,8 +87,7 @@ namespace Assignment2_S19
         static int maximumToys(int[] prices, int k)
         {
             int len = prices.Length;
-            //Todo: Professor says to include an algorithm for sorting (bubble ArgumentOutOfRangeException Binary)
-            Array.Sort(prices);
+            bubbleSort(prices);
             int sum = 0;
             int q = 0;
 
@@ -125,7 +124,6 @@ namespace Assignment2_S19
                 else
                 {
                     sumLeft += arr[j];
-                    //Warning: j+1 is going to go out of range by 1!?!
                     sumRight -= arr[j + 1];
                 }
             }
@@ -136,8 +134,8 @@ namespace Assignment2_S19
         static int[] missingNumbers(int[] arr, int[] brr)
         {
             int j = 0;
-            Array.Sort(brr);
-            Array.Sort(arr);
+            bubbleSort(brr);
+            bubbleSort(arr);
             int [] output = new int[brr.Length - arr.Length];
 
             for(int i=0; i<arr.Length; i++)
@@ -180,7 +178,7 @@ namespace Assignment2_S19
         // Complete the findMedian function below.
         static int findMedian(int[] arr)
         {
-            Array.Sort(arr);
+            bubbleSort(arr);
             int len = arr.Length;
             int med = len / 2;
 
@@ -198,7 +196,7 @@ namespace Assignment2_S19
         static int[] closestNumbers(int[] arr)
         {
             int count = 2*(arr.Length)-2;
-            Array.Sort(arr);
+            bubbleSort(arr);
             int min = arr[arr.Length] - arr[0];
 
             for(int i=0; i<arr.Length-1;i++)
@@ -249,7 +247,28 @@ namespace Assignment2_S19
                 septDays += 14;
             }
 
-            return "09-" + septDays + "-" + year;
+            return septDays + ".09." + year;
+        }
+
+        static void bubbleSort(int[] array)
+        {
+            int n = array.Length;
+            do
+            {
+                int nextN = 0;
+                for (int i = 1; i < n; i++)
+                {
+                    if (array[i - 1] > array[i])
+                    {
+                        int temp=array[i - 1];
+                        array[i-1] = array[i];
+                        array[i] = temp;
+                        nextN = i;
+                    }
+                }
+                n = nextN;
+            } while (n>1);            
+
         }
     }
 }
