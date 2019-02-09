@@ -89,7 +89,6 @@ namespace Assignment2_S19
         // maximumToys takes an array of toy prices and determines the maximum possible toys that can be purchased given a dollar amount, k
         static int maximumToys(int[] prices, int k)
         {
-            //
             // return 0 for null array
             if (prices == null)
             {
@@ -228,9 +227,7 @@ namespace Assignment2_S19
                 else
                 {
                     // no rounding occurs if previous conditions are not met
-                    {
-                        output[i] = grades[i];
-                    }
+                    output[i] = grades[i];
                 }
             }
 
@@ -320,9 +317,9 @@ namespace Assignment2_S19
         static string dayOfProgrammer(int year)
         {
             int programmingDay = 256;
-            // Calculate all days from January through August not including February
+            // Calculate all days from January through August including a non-leap year February
             int normDays = 243;
-            // The programming day is always in September so calculate how many days into September the day is on a normal non leap year
+            // The programming day is always in September so calculate how many days into September the day is on a normal non-leap year
             int septDays = programmingDay - normDays;
 
             // determine whether the year is a Julian Leap year, a Gregorian Leap year or the Transition year
@@ -341,6 +338,7 @@ namespace Assignment2_S19
                 septDays += 14;
             }
 
+            // septDays is always > 10 so no need to add leading 0
             return septDays + ".09." + year;
         }
 
